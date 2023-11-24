@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Random Quote Machine</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <style>
+            body {
+                background-color: #1d6d86;
+                margin: 0;
+                color: white;
+            }
+    
+            .container {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+    
+            #quote-box {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 37%;
+            }
+
+            #buttons {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 30px 15px 30px;
+                
+            }
+
+            #text {
+                padding-right: 30px;
+                padding-left: 30px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                font-weight: 600;
+            }
+            
+            #new-quote, #tweet-quote {
+                background-color: #1d6d86;
+                color: white;
+            }
+
+            #text, #author {
+                color: #1d6d86;
+            }
+
+        </style>
+        <script>
+            window.onload = init;
+            function init() {
+                generateQuote()
+            };
+
+            const QUOTES = [
+                {quote: "Life isn’t about getting and having, it’s about giving and being.",
+                author: "Kevin Kruse"},
+                {quote: "Whatever the mind of man can conceive and believe, it can achieve.",
+                author: "Napoleon Hill"},
+                {quote: "Strive not to be a success, but rather to be of value.",
+                author: "Albert Einstein"},
+                {quote: "Two roads diverged in a wood, and I—I took the one less traveled by, And that has made all the difference.",
+                author: "Robert Frost"},
+                {quote: "I attribute my success to this: I never gave or took any excuse.",
+                author: "Florence Nightingale"},
+                {quote: "You miss 100% of the shots you don’t take.",
+                author: "Wayne Gretzky"}
+            ]
+ 
+            function generateQuote() {
+
+                let quotesLength = QUOTES.length;
+                let randomNumber = Math.floor(Math.random() * quotesLength);
+                
+                let twitterLink = "https://twitter.com/intent/tweet?&text=%22"
+                let twitterLinkQuote = QUOTES[randomNumber].quote.replace(/ /g, "%20")
+                twitterLink += twitterLinkQuote + "%22"
+                let twitterLinkAuthor = QUOTES[randomNumber].author.replace(/ /g, "%20")
+                twitterLink += "%20-%20" + twitterLinkAuthor
+
+                document.getElementById("text").innerText = QUOTES[randomNumber].quote;
+                document.getElementById("author").innerText = QUOTES[randomNumber].author;
+                document.getElementById("tweet-quote").href = twitterLink;
+            }            
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 offset-md-3">
+                        <wrapper id="quote-box" class="">
+                            <div class="card"; border: none;">
+                                <div class="card-body text-center">
+                                <blockquote class="blockquote mb-0">
+                                    <p id="text" class="fs-3"></p>
+                                    <footer class="blockquote-footer">
+                                        <div id="author" class="fs-5"></div>
+                                    </footer>
+                                    <section id="buttons">
+                                        <button id="new-quote" onClick="generateQuote()" class="btn btn-info">New Quote</button>
+                                        <a href="#" id="tweet-quote" target="_blank" class="btn btn-info"style="width: 50px"><i class="fa fa-twitter"></i></a>
+                                    </section>
+                                </blockquote>
+                                </div>
+                            </div>                        
+                        </wrapper>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    </body>
+</html>
